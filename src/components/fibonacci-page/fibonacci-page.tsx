@@ -13,7 +13,9 @@ export const FibonacciPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     let value = parseInt(event.target.value);
-    setInputValue(value);
+    if (event.target.value.length <= 2 || value <= 19) {
+      setInputValue(value);
+    }
   }
 
   function handleButtonClick(event: FormEvent<HTMLFormElement>) {
@@ -46,7 +48,7 @@ export const FibonacciPage: React.FC = () => {
           <Button
             isLoader={isLoading}
             type="submit"
-            disabled={!inputValue}
+            disabled={!inputValue || inputValue >= 20}
             text="Рассчитать"
           />
         </form>

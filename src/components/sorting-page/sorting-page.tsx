@@ -13,7 +13,7 @@ import { delay } from "../../utils/utils";
 
 export const SortingPage: React.FC = () => {
   const [radioInputValue, setRadioInputValue] = useState<string>("Выбор");
-  const [arrValue, setArrValue] = useState<Array<number>>([]);
+  const [arrValue, setArrValue] = useState<Array<number>>(randomArr([]));
   const [columnState, setColumnState] = useState<Array<ElementStates>>([]);
   const [buttonsLoadingState, setButtonsLoadingState] = useState({
     newArrButton: false,
@@ -99,9 +99,7 @@ export const SortingPage: React.FC = () => {
         ></RadioInput>
         <Button
           onClick={() => handleSorting(Direction.Ascending)}
-          text={
-            arrValue.length === 0 ? "Создайте массив чисел" : "По возрастанию"
-          }
+          text={"По возрастанию"}
           sorting={Direction.Ascending}
           isLoader={buttonsLoadingState.ascendingButton}
           disabled={
@@ -111,7 +109,7 @@ export const SortingPage: React.FC = () => {
         ></Button>
         <Button
           onClick={() => handleSorting(Direction.Descending)}
-          text={arrValue.length === 0 ? "Создайте массив чисел" : "По убыванию"}
+          text={"По убыванию"}
           sorting={Direction.Descending}
           isLoader={buttonsLoadingState.descendingButton}
           disabled={

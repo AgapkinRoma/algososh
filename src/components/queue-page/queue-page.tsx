@@ -62,6 +62,8 @@ export const QueuePage: React.FC = () => {
           value={inputValue}
           onChange={handleInputChanger}
           extraClass={styles.queueInput}
+          maxLength={4}
+          isLimitText={true}
         />
         <Button
           disabled={
