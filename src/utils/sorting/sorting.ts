@@ -1,10 +1,12 @@
-import { swap } from "./utils";
-import { Direction } from "../types/direction";
-export function bubbleSort(arr: number[], direction: Direction) {
+import { swap } from "../utils";
+import { Direction } from "../../types/direction";
+export function bubbleSort(
+  arr: number[],
+  direction: Direction = Direction.Ascending
+) {
   const n = arr.length;
   const steps: [number[], number, number, number][] = [];
   let counter = arr.length - 1;
-
   for (let j = 0; j < n; j++) {
     let swapped = false;
     for (let i = 0; i < n - j - 1; i++) {
@@ -27,26 +29,31 @@ export function bubbleSort(arr: number[], direction: Direction) {
       break;
     }
   }
-
   steps.push([[...arr], -1, -1, -1]);
-  return { bubbleSortSteps: steps };
+  return steps;
 }
+let result = bubbleSort([]);
+console.log("бабл", result);
+let result2 = selectionSort([]);
+console.log("выбор", result2);
 
-export function selectionSort(arr: number[], direction: Direction) {
+export function selectionSort(
+  arr: number[],
+  direction: Direction = Direction.Ascending
+) {
   const n = arr.length;
   let steps: [number[], number, number, number][] = [];
   let counter: number = 0;
-
   for (let i = 0; i < n - 1; i++) {
     let minIndex = i;
     for (let j = i + 1; j < n; j++) {
       steps.push([[...arr], minIndex, j, counter]);
-      if (direction === Direction.Descending) {
-        if (arr[j] > arr[minIndex]) {
+      if (direction === Direction.Ascending) {
+        if (arr[j] < arr[minIndex]) {
           minIndex = j;
         }
       } else {
-        if (arr[j] < arr[minIndex]) {
+        if (arr[j] > arr[minIndex]) {
           minIndex = j;
         }
       }
@@ -56,8 +63,6 @@ export function selectionSort(arr: number[], direction: Direction) {
     }
     counter++;
   }
-
   steps.push([[...arr], -1, -1, counter + 1]);
-
-  return { selectionSortedSteps: steps };
+  return steps;
 }

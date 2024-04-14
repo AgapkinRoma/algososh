@@ -6,7 +6,7 @@ import { Circle } from "../ui/circle/circle";
 import {
   getStringColumnState,
   reverseStringBySteps,
-} from "../../utils/reverse-string";
+} from "../../utils/reverse-string/reverse-string";
 export const StringComponent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");

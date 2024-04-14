@@ -8,7 +8,7 @@ import { Column } from "../ui/column/column";
 import { disableButtonSetter, randomArr } from "../../utils/utils";
 import { DELAY_IN_MS } from "../../constants/delays";
 import { ElementStates } from "../../types/element-states";
-import { bubbleSort, selectionSort } from "../../utils/sorting";
+import { bubbleSort, selectionSort } from "../../utils/sorting/sorting";
 import { delay } from "../../utils/utils";
 
 export const SortingPage: React.FC = () => {
@@ -41,14 +41,14 @@ export const SortingPage: React.FC = () => {
       });
     }
     if (radioInputValue === "Выбор") {
-      let { selectionSortedSteps } = selectionSort([...arrValue], direction);
+      let selectionSortedSteps = selectionSort([...arrValue], direction);
       for (let i = 0; i < selectionSortedSteps.length; i++) {
         await delay(DELAY_IN_MS);
         const [currentArr, minIndex, currentIndex, currentCounter] =
           selectionSortedSteps[i];
         setArrValue(currentArr);
         setColumnState(() =>
-          currentArr.map((item, index) =>
+          currentArr.map((item: number, index: number, arr) =>
             index === minIndex || index === currentIndex
               ? ElementStates.Changing
               : index < currentCounter &&
@@ -60,13 +60,13 @@ export const SortingPage: React.FC = () => {
         );
       }
     } else {
-      let { bubbleSortSteps } = bubbleSort([...arrValue], direction);
+      let bubbleSortSteps = bubbleSort([...arrValue], direction);
       for (let i = 0; i < bubbleSortSteps.length; i++) {
         await delay(DELAY_IN_MS);
         const [currentArr, first, second, currentCounter] = bubbleSortSteps[i];
         setArrValue(currentArr);
         setColumnState(() =>
-          currentArr.map((item, index) =>
+          currentArr.map((item: number, index: number) =>
             index === first || index === second
               ? ElementStates.Changing
               : index > currentCounter

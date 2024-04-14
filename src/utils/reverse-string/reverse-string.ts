@@ -1,6 +1,6 @@
-import { IStringColumnStateProps } from "../types/column-string-state";
-import { ElementStates } from "../types/element-states";
-import { swap } from "./utils";
+import { IStringColumnStateProps } from "../../types/column-string-state";
+import { ElementStates } from "../../types/element-states";
+import { swap } from "../utils";
 export function reverseStringBySteps(input: string) {
   let arr = input.split("");
   let steps: string[][] = [[...arr]];
