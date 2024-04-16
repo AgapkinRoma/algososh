@@ -12,6 +12,7 @@ export function reverseStringBySteps(input: string) {
   }
   return steps;
 }
+console.log(reverseStringBySteps("tests"));
 
 export function getStringColumnState({
   index,
