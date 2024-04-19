@@ -1,14 +1,14 @@
+import { CIRCLE, CIRCLE_CONTENT } from "./utils/utils";
+
 describe("queue tests", () => {
   it("empty input disabled button", () => {
-    cy.visit("/queue");
-    cy.get("input").should("be.empty");
-    cy.contains("Добавить").should("be.disabled");
+    cy.visitWithInputAndButton("/queue", "input", "Добавить");
   });
   it("Проверка на добавление в очередь", () => {
     cy.get("input").should("be.empty").type("que");
     cy.contains("Добавить").click();
 
-    cy.get("[class*=circle_content]").first().as("firstElement");
+    cy.get(CIRCLE_CONTENT).first().as("firstElement");
     cy.get("@firstElement").contains("que");
     cy.get("@firstElement").contains("head");
     cy.get("@firstElement").contains("tail");
@@ -20,7 +20,7 @@ describe("queue tests", () => {
     cy.contains("Добавить").click();
     cy.wait(500);
 
-    cy.get("[class*=circle_content]")
+    cy.get(CIRCLE_CONTENT)
       .should("have.length", 7)
       .each(($item, i) => {
         if (i === 0) {
@@ -35,18 +35,13 @@ describe("queue tests", () => {
   });
   it("Проверка на удаление из очереди", () => {
     cy.contains("Удалить").click();
-    cy.get("[class*=circle_content]")
-      .first()
-      .children("[class*=circle_changing]");
+    cy.get(CIRCLE_CONTENT).first().children("[class*=circle_changing]");
     cy.wait(500);
-    cy.get("[class*=circle_circle]")
-      .first()
-      .children("p")
-      .should("have.text", "");
+    cy.get(CIRCLE).first().children("p").should("have.text", "");
   });
   it("Проверка на очиситку очереди", () => {
     cy.contains("Очистить").click();
-    cy.get("[class*=circle_circle]").children().nextAll().should("not.exist");
+    cy.get(CIRCLE).children().nextAll().should("not.exist");
     cy.contains("Очистить").should("be.disabled");
     cy.contains("Удалить").should("be.disabled");
   });

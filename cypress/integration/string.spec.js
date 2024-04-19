@@ -1,15 +1,18 @@
-import { defaultCircle, chagingCircle, modifiedCircle } from "./utils/utils";
+import {
+  defaultCircle,
+  chagingCircle,
+  modifiedCircle,
+  CIRCLE,
+} from "./utils/utils";
 
 describe("string test", () => {
   it("empty input button disabled", () => {
-    cy.visit("/recursion");
-    cy.get("input").should("be.empty");
-    cy.get("button").should("be.disabled");
+    cy.visitWithInputAndButton("/recursion", "input", "Развернуть");
   });
   it("Корректная отработка алгоритма разворота строки", () => {
     cy.get("input").type("strng");
     cy.contains("Развернуть").click();
-    cy.get("[class^=circle_circle]").as("circle").should("have.length", 5);
+    cy.get(CIRCLE).as("circle").should("have.length", 5);
     cy.get("@circle")
       .eq(0)
       .should("have.css", "border", chagingCircle)
