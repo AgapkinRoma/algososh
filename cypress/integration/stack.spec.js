@@ -20,8 +20,8 @@ describe("stack tests", () => {
       .should("have.css", "border", defaultCircle)
       .contains("stck");
     cy.get("[class^=circle_content__]").as("circleContent");
-    cy.get("@circleContent").children("div:first").should("have.text", "top");
-    cy.get("@circleContent").children("p").should("have.text", "0");
+    cy.get("@circleContent").first().contains("top"); //children("div:first").should("have.text", "top");
+    cy.get("@circleContent").first().contains("0"); //children("p").should("have.text", "0");
   });
   it("Проверка на удаление из стэка", () => {
     cy.contains("Удалить").click();

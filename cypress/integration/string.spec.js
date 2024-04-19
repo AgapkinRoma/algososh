@@ -7,72 +7,71 @@ describe("string test", () => {
     cy.get("button").should("be.disabled");
   });
   it("Корректная отработка алгоритма разворота строки", () => {
-    cy.get("input").type("tests")
+    cy.get("input").type("strng");
     cy.contains("Развернуть").click();
     cy.get("[class^=circle_circle]").as("circle").should("have.length", 5);
     cy.get("@circle")
       .eq(0)
       .should("have.css", "border", chagingCircle)
-      .contains("t");
+      .contains("s");
     cy.get("@circle")
       .eq(1)
       .should("have.css", "border", defaultCircle)
-      .contains("e");
+      .contains("t");
     cy.get("@circle")
       .eq(2)
       .should("have.css", "border", defaultCircle)
-      .contains("s");
+      .contains("r");
     cy.get("@circle")
       .eq(3)
       .should("have.css", "border", defaultCircle)
-      .contains("t");
+      .contains("n");
     cy.get("@circle")
       .eq(4)
       .should("have.css", "border", chagingCircle)
-      .contains("s");
+      .contains("g");
     cy.wait(1000);
     cy.get("@circle")
       .eq(0)
       .should("have.css", "border", modifiedCircle)
-      .contains("s");
+      .contains("g");
     cy.get("@circle")
       .eq(1)
       .should("have.css", "border", chagingCircle)
-      .contains("e");
+      .contains("t");
     cy.get("@circle")
       .eq(2)
       .should("have.css", "border", defaultCircle)
-      .contains("s");
+      .contains("r");
     cy.get("@circle")
       .eq(3)
       .should("have.css", "border", chagingCircle)
-      .contains("t");
+      .contains("n");
     cy.get("@circle")
       .eq(4)
       .should("have.css", "border", modifiedCircle)
-      .contains("t");
+      .contains("s");
 
     cy.get("@circle")
       .eq(0)
       .should("have.css", "border", modifiedCircle)
-      .contains("s");
+      .contains("g");
     cy.get("@circle")
       .eq(1)
       .should("have.css", "border", modifiedCircle)
-      .contains("t");
+      .contains("n");
     cy.get("@circle")
       .eq(2)
       .should("have.css", "border", modifiedCircle)
-      .contains("s");
+      .contains("r");
     cy.get("@circle")
       .eq(3)
       .should("have.css", "border", modifiedCircle)
-      .contains("e");
+      .contains("t");
     cy.get("@circle")
       .eq(4)
       .should("have.css", "border", modifiedCircle)
-      .contains("t");
+      .contains("s");
     cy.get("input").clear();
-  
   });
 });

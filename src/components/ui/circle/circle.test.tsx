@@ -35,7 +35,7 @@ describe("Тестирование компонента Circle", () => {
     const circleElement = renderer.create(<Circle index={1} />).toJSON();
     expect(circleElement).toMatchSnapshot();
   });
-  test("отрисовка элемента с пропом isSmall", () => {
+  test("отрисовка элемента с пропcом isSmall", () => {
     const circleElement = renderer.create(<Circle isSmall={true} />).toJSON();
     expect(circleElement).toMatchSnapshot();
   });
